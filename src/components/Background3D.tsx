@@ -1,6 +1,5 @@
 import { useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { Sphere, MeshDistortMaterial } from '@react-three/drei'
 import * as THREE from 'three'
 
 const AnimatedSphere = ({ position, color, speed }: { 
@@ -19,17 +18,16 @@ const AnimatedSphere = ({ position, color, speed }: {
   })
 
   return (
-    <Sphere ref={meshRef} args={[1, 100, 200]} position={position}>
-      <MeshDistortMaterial
+    <mesh ref={meshRef} position={position}>
+      <sphereGeometry args={[1, 32, 32]} />
+      <meshStandardMaterial
         color={color}
-        attach="material"
-        distort={0.3}
-        speed={2}
-        roughness={0}
         transparent
         opacity={0.6}
+        roughness={0.2}
+        metalness={0.8}
       />
-    </Sphere>
+    </mesh>
   )
 }
 
